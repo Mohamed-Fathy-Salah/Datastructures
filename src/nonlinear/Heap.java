@@ -9,14 +9,21 @@ public class Heap{
     }
     public Heap(int arr[]){
         if(arr.length == 0){
-            // this();
+            maxSize = 7;
+            filled = 0;
+            arr = new int [maxSize];
             return ;
         }
         filled = maxSize = arr.length;
         this.arr = arr;
+        if(isSorted(arr))return;
         int i = (filled>>1)-1;
         while(i>=0)
             trickleDown(i--);
+    }
+    private boolean isSorted(int arr[]){
+        for(int i= 1 ;i<arr.length;i++)if(arr[i]>arr[i-1])return false;
+        return true;
     }
     public void insert(int data){
         if(filled())increaseSize();
@@ -75,6 +82,7 @@ public class Heap{
         }
         arr[i] = tmp;
     }
+    public  int[] getArray(){return arr.clone();}
     private boolean filled(){return filled == maxSize;}
     private int parent(int i){return (i-1)>>1;}
     private int left(int i){return (i<<1)+1;}

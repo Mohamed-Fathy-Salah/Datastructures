@@ -1,30 +1,28 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
+import java.util.stream.Stream;
 
+import assignments.A9;
 import assignments.A8;
 import hash.Double;
+import nonlinear.Heap;
 
 public class Main {
     private static Random r = new Random();
-    private static A8 A = new A8();
+    private static A9 A = new A9();
 
     public static void main(String[] args) {
-        A8.Node root = A.new Node(0);
-        root.left = n(1);
-        root.right = n(2);
-        root.left.left = n(3);
-        root.left.right = n(4);
-        root.left.right.right = n(5);
-
-        A8.Node subTree = null;
-
-
-
-        p(A.findSubTree(root, subTree));
+        int arr[] = {5,4,2,3,1};
+        int brr[] = {5,5,9,0,7};
+        Heap a = new Heap(arr);
+        Heap b = new Heap(brr);
+        Heap ret = A.merge(a, b);
+        while(!ret.empty())p(ret.poll());
     }
     public static A8.Node n(int key){
         return A.new Node(key);
