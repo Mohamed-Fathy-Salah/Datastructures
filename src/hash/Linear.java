@@ -16,8 +16,8 @@ public class Linear implements Hashable {
     }
 
     protected void increaseSize() {
-        int tmp[] = arr;
-        maxSize = nextPrime(maxSize);
+        int tmp[] = arr.clone();
+        maxSize = Helper.nextPrime(maxSize);
         arr = new int[maxSize];
         Arrays.fill(arr, NOT_USED);
         for (int i = 0; i < tmp.length; i++)
@@ -30,19 +30,6 @@ public class Linear implements Hashable {
             if (arr[idx] == i)
                 return true;
         return false;
-    }
-
-    private int nextPrime(int i) {
-        for (i += 2; true; i += 2)
-            if (isPrime(i))
-                return i;
-    }
-
-    private boolean isPrime(int p) {
-        for (int i = 3; (long) i * i <= p; i += 2)
-            if (p % i == 0)
-                return false;
-        return true;
     }
 
     @Override

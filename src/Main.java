@@ -17,15 +17,6 @@ public class Main {
     private static A9 A = new A9();
 
     public static void main(String[] args) {
-        int arr[] = {5,4,2,3,1};
-        int brr[] = {5,5,9,0,7};
-        Heap a = new Heap(arr);
-        Heap b = new Heap(brr);
-        Heap ret = A.merge(a, b);
-        while(!ret.empty())p(ret.poll());
-    }
-    public static A8.Node n(int key){
-        return A.new Node(key);
     }
 
     public static void preorder(A8.Node root) {
