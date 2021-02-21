@@ -9,7 +9,7 @@ public class A3 {
      */
     public void put(LinkList l,int i,int x){
         if(i<0 || i>l.size())return ;
-        Link b = new Link(x);
+        Linkk b = new Linkk(x);
         if(l.isEmpty()){
             l.first = l.last = b;
             return;
@@ -24,7 +24,7 @@ public class A3 {
             l.last = b;
             return;
         }
-        Link a = get(l,i-1);
+        Linkk a = get(l,i-1);
         b.next = a.next;
         a.next = b;
     }
@@ -40,11 +40,11 @@ public class A3 {
             i = j;
             j = t;
         }
-        Link a = get(l, i);
-        Link b = get(l, j);
+        Linkk a = get(l, i);
+        Linkk b = get(l, j);
         if (a == null || b == null || a == b)
             return;
-        Link n = a.next;
+        Linkk n = a.next;
         a.next = b.next;
         b.next = n;
         n.prev = b;
@@ -63,10 +63,10 @@ public class A3 {
             l.last = a;
     }
 
-    private Link get(LinkList l, int i) {
+    private Linkk get(LinkList l, int i) {
         if (i < 0 || i >= l.size())
             return null;
-        Link ret = l.getFirst();
+        Linkk ret = l.getFirst();
         while (i-- > 0)
             ret = ret.next;
         return ret;
