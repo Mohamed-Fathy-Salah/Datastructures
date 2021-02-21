@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import assignments.A9;
 import assignments.A8;
+import hash.Chain;
 import hash.Double;
 import nonlinear.Heap;
 
@@ -17,6 +18,9 @@ public class Main {
     private static A9 A = new A9();
 
     public static void main(String[] args) {
+        Chain c = new Chain();
+        for (int i = 0; i < 23; i++)c.push(i);
+        c.print();
     }
 
     public static void preorder(A8.Node root) {
