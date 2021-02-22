@@ -169,12 +169,11 @@ public class A8 {
 
     // Delete all leaves from a binary tree.
     public void removeLeaves(Node root) {
-        if (root == null)
-            return;
         Stack<Node> s = new Stack<>();
         s.add(root);
         while (!s.isEmpty()) {
             Node t = s.pop();
+            if(t == null)continue;
             if (isLeaf(t.left))
                 t.left = null;
             else
@@ -187,8 +186,7 @@ public class A8 {
     }
 
     public boolean isLeaf(Node root) {
-        if (root == null)
-            return false;
+        if(root == null)return false;
         return root.left == null && root.right == null;
     }
 }

@@ -16,15 +16,22 @@ import nonlinear.Heap;
 
 public class Main {
     private static Random r = new Random();
-    private static A4 A = new A4();
+    private static A8 A = new A8();
 
     public static void main(String[] args) {
-        A4.QStack s = A.new QStack();
-        for (int i = 0; i < 10; i++)s.push(i);
-        for (int i = 0; i < 7; i++) p(s.pop());
-        for (int i = 10; i < 15; i++)s.push(i);
-        for (int i = 0; i < 7; i++) p(s.pop());
+        A8.Node root = n(0);
+        root.left = n(1);
+        root.left .left= n(2);
+        root.left .right= n(3);
+        preorder(root);
+        A.removeLeaves(root);
+        System.out.println();
+        preorder(root);
+
     }
+    public static A8.Node n(int key){
+        return A.new Node(key);
+    } 
 
     public static void preorder(A8.Node root) {
         if (root == null)
