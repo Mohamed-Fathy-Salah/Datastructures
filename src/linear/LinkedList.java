@@ -10,6 +10,7 @@ public class LinkedList<T extends Comparable <? super T>> {
     public Link<T> getFirst() {
         return first;
     }
+    public void setFirst(Link<T> first){this.first = first;}
 
     public Link<T> find(T key) {
         Link<T> cur = first;
@@ -108,7 +109,7 @@ public class LinkedList<T extends Comparable <? super T>> {
         if(a==null)return b;
         if(b==null)return a;
         Link<T> ret;
-        if(a.data.compareTo(b.data)<1){
+        if(a.data.compareTo(b.data)<0){
             ret = a;
             ret.next = merge(a.next,b);
         }else {
