@@ -19,24 +19,26 @@ public class Main {
     private static A8 A = new A8();
 
     public static void main(String[] args) {
-        A8.Node root = n(0);
-        root.left = n(1);
-        root.left .left= n(2);
-        root.left .right= n(3);
-        preorder(root);
-        A.removeLeaves(root);
-        System.out.println();
-        preorder(root);
-
+        long o = System.nanoTime();
+        int x = 100;
+        while (x-- > 0) {
+            int arr[] = new int[100000];
+            for (int i = 0; i < arr.length; i++)
+                arr[i] = r.nextInt();
+            Sort.MergeSort(arr, 0, arr.length - 1);
+            if(!isSorted(arr))p("shit");
+        }
+        p(System.nanoTime()-o);
     }
-    public static A8.Node n(int key){
+
+    public static A8.Node n(int key) {
         return A.new Node(key);
-    } 
+    }
 
     public static void preorder(A8.Node root) {
         if (root == null)
             return;
-        System.out.print(root+" ");
+        System.out.print(root + " ");
         preorder(root.left);
         preorder(root.right);
     }
@@ -54,6 +56,12 @@ public class Main {
     public static boolean isSorted(ArrayList<Integer> arr) {
         for (int i = 1; i < arr.size(); i++)
             if (arr.get(i) > arr.get(i - 1))
+                return false;
+        return true;
+    }
+    public static boolean isSorted(int[] arr) {
+        for (int i = 1; i < arr.length; i++)
+            if (arr[i] < arr[i - 1])
                 return false;
         return true;
     }

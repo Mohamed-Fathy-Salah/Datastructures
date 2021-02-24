@@ -145,36 +145,6 @@ public class Problems {
         }
     }
 
-    public static void sort(int s, int e) {
-        if (e <= s)
-            return;
-        int m = (s + e) >> 1;
-        sort(s, m);
-        sort(m + 1, e);
-        merge(s, e);
-    }
-
-    public static void merge(int s, int e) {
-        int[] tmp = new int[e - s + 1];
-        int m = (s + e) >> 1, l = s, r = m + 1, idx = 0;
-        while (l <= m && r <= e) {
-            if (arr[l] < arr[r])
-                tmp[idx] = arr[l++];
-            else
-                tmp[idx] = arr[r++];
-            idx++;
-        }
-        while (l <= m)
-            tmp[idx++] = arr[l++];
-        while (r <= e)
-            tmp[idx++] = arr[r++];
-    }
-
-    public static void print() {
-        for (int j : arr)
-            System.out.print(j + " ");
-        System.out.println();
-    }
     public void dfs(ArrayList<ArrayList<Integer>> g,int i){
         Stack<Integer> s = new Stack<>();
         boolean vis[] = new boolean[g.size()];
