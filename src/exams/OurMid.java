@@ -1,7 +1,17 @@
 package exams;
+
+import java.util.Stack;
+
 public class OurMid{
     public static void main(String[] args) {
         test1b();
+        test2b();
+    }
+    private static void test2b(){
+        System.out.println(isPal("abba"));
+        System.out.println(isPal("acba"));
+        System.out.println(isPal("abcba"));
+        System.out.println(isPal("akcba"));
     }
     private static void test1b(){
         // 2 3 18 22 25 40
@@ -32,6 +42,7 @@ public class OurMid{
             System.out.print(c.val+" ");
             c = c.next;
         }
+        System.out.println();
     }
     private static class link{
         public link next;
@@ -91,5 +102,19 @@ public class OurMid{
             }
         }
         return ret.next;
+    }
+
+    //2b
+    private static boolean isPal(String str){
+        Stack<Character> s = new Stack<>();
+        //abba
+        //abcba
+        int n  = str.length()/2,i = 0;
+        for(;i<n;i++)s.push(str.charAt(i));
+        i += (str.length()&1);// if odd add 1
+        for(;i<str.length();i++)
+            if(str.charAt(i)!= s.pop())
+                return false;
+        return true;
     }
 }
