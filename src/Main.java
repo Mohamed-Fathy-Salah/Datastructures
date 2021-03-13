@@ -1,8 +1,5 @@
 import java.util.Random;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import javax.sql.rowset.serial.SerialArray;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -21,9 +18,9 @@ public class Main {
         insert(root.children.getFirst().children.getFirst(),new Integer[]{11,12});
 
         System.out.println("the whole tree\t"+root);
-        System.out.println("search 11\t"+searchTree(root, null, 11));
-        System.out.println("search 4\t"+searchTree(root, null, 4));
-        System.out.println("search 13\t"+searchTree(root, null, 13));
+        System.out.println("search 11\t"+searchTree(root,  11));
+        System.out.println("search 4\t"+searchTree(root, 4));
+        System.out.println("search 13\t"+searchTree(root, 13));
     }
     public static void insert(TreeNode t,Integer arr[]){
         t.children.addAll(Arrays.asList(arr).stream().map(a->new TreeNode(a)).collect(Collectors.toList()));
@@ -40,6 +37,8 @@ public class Main {
             return key +":"+ children.toString();
         }
     }
+    // for undirected tree 
+    // call with searchTree(root,null , val);
     public static TreeNode searchTree(TreeNode start,TreeNode parent,int val){
         if(start.key == val)return start;
         for (TreeNode child : start.children)if(child != parent){
@@ -48,6 +47,17 @@ public class Main {
         }
         return null;
     }
+    // for directed tree
+    // call with searchTree(root, val);
+    public static TreeNode searchTree(TreeNode start,int val){
+        if(start.key == val)return start;
+        for (TreeNode child : start.children){
+            TreeNode ret = searchTree(child , val);
+            if(ret != null)return ret;
+        }
+        return null;
+    }
+
 
     public static void p(Object s) {
         System.out.println(s);
