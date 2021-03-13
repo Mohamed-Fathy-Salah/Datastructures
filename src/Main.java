@@ -1,24 +1,52 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
-import linear.Link;
-import linear.LinkedList;
+import javax.sql.rowset.serial.SerialArray;
+
+import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Main {
     private static Random r = new Random();
     public static void main(String[] args) {
-        int arr[] = new int[11];
-        for(int i = 0;i<11;i++)arr[i] = r.nextInt(10);
-        pa(arr);
-        Sort.QuickSort(arr,0,10);
-        pa(arr);
+        testSearchTreeNode();
     }
-    public static void swap(int arr[] ,int i,int j){
-        int t = arr[i];
-        arr[i] = arr[j] ;
-        arr[j] =  t;
+
+    public static void testSearchTreeNode(){
+        TreeNode root = new TreeNode(1);
+        insert(root,new Integer[]{2,3});
+        insert(root.children.getFirst(),new Integer[]{4,5,6});
+        insert(root.children.getLast(),new Integer[]{7 , 8 , 9 , 10});
+        insert(root.children.getFirst().children.getFirst(),new Integer[]{11,12});
+
+        System.out.println("the whole tree\t"+root);
+        System.out.println("search 11\t"+searchTree(root, null, 11));
+        System.out.println("search 4\t"+searchTree(root, null, 4));
+        System.out.println("search 13\t"+searchTree(root, null, 13));
+    }
+    public static void insert(TreeNode t,Integer arr[]){
+        t.children.addAll(Arrays.asList(arr).stream().map(a->new TreeNode(a)).collect(Collectors.toList()));
+    }
+    private static class TreeNode{
+        public int key;
+        public LinkedList<TreeNode> children;
+        public TreeNode(int key){
+            this.key = key;
+            children = new LinkedList<>();
+        }
+        @Override
+        public String toString() {
+            return key +":"+ children.toString();
+        }
+    }
+    public static TreeNode searchTree(TreeNode start,TreeNode parent,int val){
+        if(start.key == val)return start;
+        for (TreeNode child : start.children)if(child != parent){
+            TreeNode ret = searchTree(child , start , val);
+            if(ret != null)return ret;
+        }
+        return null;
     }
 
     public static void p(Object s) {
@@ -29,21 +57,5 @@ public class Main {
         for (int i : arr)
             System.out.print(i + " ");
         System.out.println();
-    }
-
-    public static boolean isSorted(int[] arr) {
-        for (int i = 1; i < arr.length; i++)
-            if (arr[i] < arr[i - 1])
-                return false;
-        return true;
-    }
-    public static boolean isSorted(LinkedList<Integer> l){
-        Link prev = l.getFirst() , cur = l.getFirst();
-        while(cur!=null){
-            if(cur.data.compareTo(prev.data)<0)return false;
-            prev = cur;
-            cur = cur.next;
-        }
-        return true;
     }
 }
