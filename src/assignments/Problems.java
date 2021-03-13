@@ -113,38 +113,6 @@ public class Problems {
             s.push(n);
     }
 
-    public static void swap(int i, int j) {
-        int t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
-    }
-
-    public static void bubbleSort(int s, int e) {
-        for (int i = e; i >= s; i--)
-            for (int j = s; j < i; j++)
-                if (arr[j] < arr[j + 1])
-                    swap(j, j + 1);
-    }
-
-    public static void selectionSort(int s, int e) {
-        for (int i = s; i <= e; i++) {
-            int min = i;
-            for (int j = i + 1; j <= e; j++)
-                if (arr[min] > arr[j])
-                    min = j;
-            swap(i, min);
-        }
-    }
-
-    public static void insertionSort(int s, int e) {
-        for (int i = s + 1; i <= e; i++) {
-            int t = arr[i], j = i;
-            for (; j > s && arr[j - 1] > t; j--)
-                arr[j] = arr[j - 1];
-            arr[j] = t;
-        }
-    }
-
     public void dfs(ArrayList<ArrayList<Integer>> g,int i){
         Stack<Integer> s = new Stack<>();
         boolean vis[] = new boolean[g.size()];

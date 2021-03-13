@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 import linear.Link;
@@ -7,15 +9,16 @@ import linear.LinkedList;
 public class Main {
     private static Random r = new Random();
     public static void main(String[] args) {
-        long o = System.nanoTime();
-        int x = 1000;
-        while(x-->0){
-            LinkedList<Integer>  l = new LinkedList<>();
-            for (int i = 0; i < 10000; i++) l.pushFront(r.nextInt());
-            Sort.mergeSort(l);
-            if(!isSorted(l))p("shit");
-        }
-        p(System.nanoTime()-o);
+        int arr[] = new int[11];
+        for(int i = 0;i<11;i++)arr[i] = r.nextInt(10);
+        pa(arr);
+        Sort.QuickSort(arr,0,10);
+        pa(arr);
+    }
+    public static void swap(int arr[] ,int i,int j){
+        int t = arr[i];
+        arr[i] = arr[j] ;
+        arr[j] =  t;
     }
 
     public static void p(Object s) {
